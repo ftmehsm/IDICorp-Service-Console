@@ -250,3 +250,64 @@
     }
   }
   
+  
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 1rem;
+}
+
+.actionButton,
+.deleteButton {
+  min-height: 40px;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.actionButton {
+  color: #1d4ed8;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.actionButton:hover:not(:disabled) {
+  background: #dbeafe;
+}
+
+.deleteButton {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #fee2e2;
+}
+
+.actionButton:disabled,
+.deleteButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.actionButton:focus-visible,
+.deleteButton:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionButton,
+  .deleteButton {
+    transition: none;
+  }
+}
