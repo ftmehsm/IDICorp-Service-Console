@@ -78,10 +78,10 @@
 }
 
 .appMain {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  align-items: center;
-  padding: 64px 6%;
+  min-height: 0;
 }
 
 .loginLayout {
@@ -91,7 +91,8 @@
   gap: clamp(40px, 8vw, 112px);
   width: 100%;
   max-width: 1120px;
-  margin: 0 auto;
+  margin: auto;
+  padding: 64px 6%;
 }
 
 .loginIntro {
@@ -186,14 +187,11 @@
     display: none;
   }
 
-  .appMain {
-    padding: 40px 20px;
-  }
-
   .loginLayout {
     grid-template-columns: minmax(0, 1fr);
     gap: 32px;
     max-width: 440px;
+    padding: 40px 20px;
   }
 
   .loginIntro {

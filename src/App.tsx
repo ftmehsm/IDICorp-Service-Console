@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="app">
       <header className="appHeader">
-        <Link to="/login" className="brand">
+        <Link to="/dashboard" className="brand">
           <span className="brandMark">i</span>
           <span className="brandName">IDICorp</span>
           <span className="brandDivider" />
