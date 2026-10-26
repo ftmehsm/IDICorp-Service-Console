@@ -1,10 +1,10 @@
-function DashboardPage() {
-    return (
-      <section>
-        <h1>Service Console</h1>
-        <p>Login successful. Dashboard is under development.</p>
-      </section>
-    );
-  }
-  
-  export default DashboardPage;
+import TaskList from "../features/tasks/TaskList";
+
+export default function DashboardPage() {
+  return (
+    <main>
+      <h1>Dashboard</h1>
+      <TaskList />
+    </main>
+  );
+}
