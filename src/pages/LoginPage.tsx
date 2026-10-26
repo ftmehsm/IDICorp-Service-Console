@@ -1,7 +1,9 @@
 
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import LoginForm from "../components/LoginForm";
 import { getCaptcha, login } from "../api/auth";
+import { useAuth } from "../auth/AuthContext";
 
 export default function LoginPage() {
   const [captcha, setCaptcha] = useState({
@@ -11,6 +13,8 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCaptchaLoading, setIsCaptchaLoading] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { loginSuccess } = useAuth();
 
   const refreshCaptcha = useCallback(async () => {
     setIsCaptchaLoading(true);
@@ -39,15 +43,18 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const result = await login({
+      const response = await login({
         username: data.username,
         password: data.password,
         salt: captcha.salt,
         captcha_answer: data.captchaAnswer,
       });
 
-      // Temporary: verify successful response.
-      console.log("Login successful", result);
+      sessionStorage.setItem("access_token", response.access_token);
+
+
+      loginSuccess();
+      navigate("/dashboard", { replace: true });
     } catch {
       setError("Login failed. Check your credentials and CAPTCHA.");
       await refreshCaptcha();
@@ -57,14 +64,46 @@ export default function LoginPage() {
   }
 
   return (
-    <main>
-      <LoginForm
-        captchaImage={captcha.captcha}
-        isLoading={isLoading || isCaptchaLoading}
-        error={error}
-        onSubmit={handleLogin}
-        onRefreshCaptcha={refreshCaptcha}
-      />
-    </main>
+    <section className="loginLayout">
+      <div className="loginIntro">
+        <span className="eyebrow">IDICORP SERVICE CONSOLE</span>
+
+        <h1 className="introTitle">
+          Your workspace,
+          <br />
+          <span>under control.</span>
+        </h1>
+
+        <p className="introDescription">
+          Sign in to access your service console and manage your tasks
+          through one secure workspace.
+        </p>
+
+        <div className="featureList">
+          <div className="featureItem">
+            <span className="featureIcon" aria-hidden="true">✓</span>
+            Secure authentication
+          </div>
+          <div className="featureItem">
+            <span className="featureIcon" aria-hidden="true">✓</span>
+            Task management in one place
+          </div>
+          <div className="featureItem">
+            <span className="featureIcon" aria-hidden="true">✓</span>
+            Real-time service tools
+          </div>
+        </div>
+      </div>
+
+      <div className="loginCard">
+        <LoginForm
+          captchaImage={captcha.captcha}
+          isLoading={isLoading || isCaptchaLoading}
+          error={error}
+          onSubmit={handleLogin}
+          onRefreshCaptcha={refreshCaptcha}
+        />
+      </div>
+    </section>
   );
 }
