@@ -1,0 +1,252 @@
+
+.card {
+    min-width: 0;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgb(15 23 42 / 4%);
+  }
+  
+  .heading {
+    margin: 0 0 20px;
+    color: #172033;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  
+  .filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .search,
+  .status {
+    display: grid;
+    gap: 7px;
+    min-width: 0;
+  }
+  
+  .filterLabel {
+    color: #475569;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  
+  .filterInput,
+  .filterSelect {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 10px;
+    color: #172033;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.9rem;
+  }
+  
+  .filterInput:focus-visible,
+  .filterSelect:focus-visible {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgb(79 70 229 / 15%);
+  }
+  
+  .searchRow {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .searchRow .filterInput {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .searchButton,
+  .retryButton {
+    min-height: 42px;
+    padding: 9px 14px;
+    color: #4338ca;
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .searchButton:hover,
+  .retryButton:hover {
+    background: #e0e7ff;
+  }
+  
+  .searchButton:focus-visible,
+  .retryButton:focus-visible {
+    outline: 3px solid rgb(79 70 229 / 25%);
+    outline-offset: 2px;
+  }
+  
+  .count {
+    margin: 0 0 12px;
+    color: #64748b;
+    font-size: 0.85rem;
+  }
+  
+  .items {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .task {
+    min-width: 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 11px;
+    overflow-wrap: anywhere;
+    transition: border-color 150ms ease, background 150ms ease;
+  }
+  
+  .task:hover {
+    background: #ffffff;
+    border-color: #c7d2fe;
+  }
+  
+  .taskHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  
+  .taskTitle {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  
+  .description {
+    margin: 10px 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  
+  .statusBadge {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 650;
+  }
+  
+  .completed {
+    color: #166534;
+    background: #dcfce7;
+  }
+  
+  .pending {
+    color: #92400e;
+    background: #fef3c7;
+  }
+  
+  .updated {
+    margin: 12px 0 0;
+    color: #94a3b8;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+  
+  .state {
+    padding: 28px 16px;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+  
+  .state p {
+    margin: 0 0 12px;
+  }
+  
+  .state p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .error {
+    color: #991b1b;
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+  
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .spinner {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border: 2px solid #cbd5e1;
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+    animation: spin 700ms linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .card {
+      padding: 18px;
+      border-radius: 12px;
+    }
+  
+    .filters {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  
+    .task {
+      padding: 13px;
+    }
+  
+    .taskHeader {
+      flex-wrap: wrap;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .spinner {
+      animation: none;
+    }
+  
+    .task {
+      transition: none;
+    }
+  }
+  

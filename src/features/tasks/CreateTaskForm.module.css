@@ -1,0 +1,141 @@
+
+.card {
+    min-width: 0;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgb(15 23 42 / 4%);
+  }
+  
+  .heading {
+    margin: 0 0 22px;
+    color: #172033;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  
+  .form {
+    display: grid;
+    gap: 18px;
+  }
+  
+  .field {
+    display: grid;
+    gap: 8px;
+  }
+  
+  .label {
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .input,
+  .textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 11px 12px;
+    color: #172033;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 0.95rem;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  
+  .textarea {
+    min-height: 112px;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  
+  .input::placeholder,
+  .textarea::placeholder {
+    color: #94a3b8;
+  }
+  
+  .input:focus-visible,
+  .textarea:focus-visible {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgb(79 70 229 / 15%);
+  }
+  
+  .invalid {
+    border-color: #dc2626;
+  }
+  
+  .help {
+    color: #64748b;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .message {
+    margin: 0;
+    padding: 11px 12px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  
+  .error {
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+  }
+  
+  .success {
+    color: #166534;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+  }
+  
+  .submit {
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 16px;
+    color: #ffffff;
+    background: #4f46e5;
+    border: 1px solid #4f46e5;
+    border-radius: 9px;
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background 150ms ease, transform 150ms ease;
+  }
+  
+  .submit:hover:not(:disabled) {
+    background: #4338ca;
+  }
+  
+  .submit:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  
+  .submit:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  
+  .submit:focus-visible {
+    outline: 3px solid rgb(79 70 229 / 30%);
+    outline-offset: 3px;
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      padding: 18px;
+      border-radius: 12px;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .submit {
+      transition: none;
+    }
+  }
+  
