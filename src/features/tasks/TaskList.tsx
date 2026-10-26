@@ -1,18 +1,15 @@
-
 import { useState, type FormEvent } from "react";
-import {
-  useTasks,
-  useUpdateTask,
-  useDeleteTask,
-} from "./hooks";
+import { useTasks, useUpdateTask, useDeleteTask } from "./hooks";
 import type { Task, TaskFilters } from "./types";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import styles from "./TaskList.module.css";
+import EditTaskModal from "./EditTaskModal";
 
 export default function TaskList() {
   const [searchInput, setSearchInput] = useState("");
   const [filters, setFilters] = useState<TaskFilters>({});
   const [taskToDelete, setTaskToDelete] = useState<Task | null>(null);
+  const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
 
   const {
     data: tasks,
@@ -38,8 +35,7 @@ export default function TaskList() {
   function handleStatusChange(value: string) {
     setFilters((current) => ({
       ...current,
-      completed:
-        value === "all" ? undefined : value === "completed",
+      completed: value === "all" ? undefined : value === "completed",
     }));
   }
 
@@ -131,10 +127,7 @@ export default function TaskList() {
       )}
 
       {isLoading && (
-        <div
-          className={`${styles.state} ${styles.loading}`}
-          role="status"
-        >
+        <div className={`${styles.state} ${styles.loading}`} role="status">
           <span className={styles.spinner} aria-hidden="true" />
           <span>Loading tasks...</span>
         </div>
@@ -143,9 +136,7 @@ export default function TaskList() {
       {isError && (
         <div className={`${styles.state} ${styles.error}`} role="alert">
           <p>
-            {error instanceof Error
-              ? error.message
-              : "Failed to load tasks."}
+            {error instanceof Error ? error.message : "Failed to load tasks."}
           </p>
 
           <button
@@ -182,9 +173,7 @@ export default function TaskList() {
 
                     <span
                       className={`${styles.statusBadge} ${
-                        task.completed
-                          ? styles.completed
-                          : styles.pending
+                        task.completed ? styles.completed : styles.pending
                       }`}
                     >
                       {task.completed ? "Completed" : "Pending"}
@@ -192,9 +181,7 @@ export default function TaskList() {
                   </header>
 
                   {task.description && (
-                    <p className={styles.description}>
-                      {task.description}
-                    </p>
+                    <p className={styles.description}>{task.description}</p>
                   )}
 
                   <p className={styles.updated}>
@@ -209,9 +196,7 @@ export default function TaskList() {
                       className={styles.actionButton}
                       type="button"
                       disabled={updateTask.isPending}
-                      onClick={() =>
-                        handleToggleTask(task.id, task.completed)
-                      }
+                      onClick={() => handleToggleTask(task.id, task.completed)}
                     >
                       {updateTask.isPending
                         ? "Saving..."
@@ -227,6 +212,13 @@ export default function TaskList() {
                       onClick={() => handleDeleteTask(task)}
                     >
                       Delete
+                    </button>
+                    <button
+                      className={styles.actionButton}
+                      type="button"
+                      onClick={() => setTaskToEdit(task)}
+                    >
+                      Edit
                     </button>
                   </div>
                 </article>
@@ -248,6 +240,7 @@ export default function TaskList() {
         onCancel={handleCancelDelete}
         onConfirm={handleConfirmDelete}
       />
+      <EditTaskModal task={taskToEdit} onClose={() => setTaskToEdit(null)} />
     </section>
   );
 }
