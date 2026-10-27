@@ -1,4 +1,3 @@
-
 import { createBrowserRouter, Navigate } from "react-router";
 import App from "../App";
 import LoginPage from "../pages/LoginPage";
@@ -60,7 +59,9 @@ export const router = createBrowserRouter(
           element: <Navigate to="/" replace />,
         },
       ],
-      
     },
-  ]
+  ],
+  {
+    basename: "/IDICorp-Service-Console",
+  },
 );
