@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { sendStreamEcho } from "./echoStreamService";
 import styles from "./EchoStream.module.css";
-import axios from "axios";
 
 export default function EchoStream() {
   const [content, setContent] = useState("");
