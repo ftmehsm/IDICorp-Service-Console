@@ -285,6 +285,10 @@ npm run lint
 
 Available scripts depend on the project's `package.json`.
 
+### Known Issues
+
+- **Text Echo WebSocket:** During testing, the connection to `wss://ts.idicorp.ir/ws/echo` failed before the expected `{"type":"ready"}` message was received. The browser reported WebSocket close code `1006` (abnormal closure). The root cause could not be confirmed, so the issue may be related to the server endpoint or the connection environment.
+
 ## Design Decisions
 
 - **Feature-oriented organization:** Keeps related UI, types, and communication logic together.
