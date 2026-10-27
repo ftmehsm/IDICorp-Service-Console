@@ -39,3 +39,13 @@ export const CALCULATOR_LIMITS = {
   maxNumbers: 100,
   maxAbsoluteValue: 1_000_000_000_000,
 } as const;
+
+export type CalculatorKey =
+  | { type: "digit"; value: string }
+  | { type: "decimal" }
+  | { type: "operator"; value: CalculatorOperation }
+  | { type: "clear" }
+  | { type: "sign" }
+  | { type: "delete" }
+  | { type: "equals" };
+

@@ -91,7 +91,8 @@
 
 .content {
   min-width: 0;
-  overflow: auto;
+  max-width: 100%;
+  overflow-x: hidden;
   background: transparent;
 }
 
