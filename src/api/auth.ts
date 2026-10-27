@@ -17,16 +17,20 @@ export interface LoginResponse {
   token_type: string;
 }
 
+
 export async function getCaptcha(): Promise<CaptchaResponse> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
-    method: "GET",
-    credentials: "include",
-    cache: "no-store",
-    headers: {
-      "Cache-Control": "no-cache",
-      Pragma: "no-cache",
+  const response = await fetch(
+    `${API_BASE_URL}/api/auth/login`,
+    {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+      },
     },
-  });
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to fetch CAPTCHA: ${response.status}`);
@@ -34,6 +38,7 @@ export async function getCaptcha(): Promise<CaptchaResponse> {
 
   return response.json() as Promise<CaptchaResponse>;
 }
+
 
 export async function login(payload: LoginPayload): Promise<LoginResponse> {
   const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
@@ -51,3 +56,4 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
 
   return response.json() as Promise<LoginResponse>;
 }
+

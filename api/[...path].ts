@@ -70,9 +70,7 @@ export default async function handler(
 
     const cacheControl = upstream.headers.get("cache-control");
 
-    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-    res.setHeader("Pragma", "no-cache");
-    res.setHeader("Expires", "0");
+    res.setHeader("Cache-Control", cacheControl ?? "no-store");
 
     const responseBody = Buffer.from(await upstream.arrayBuffer());
     return res.send(responseBody);
