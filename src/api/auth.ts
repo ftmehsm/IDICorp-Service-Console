@@ -18,7 +18,15 @@ export interface LoginResponse {
 }
 
 export async function getCaptcha(): Promise<CaptchaResponse> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/login`);
+  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+    method: "GET",
+    credentials: "include",
+    cache: "no-store",
+    headers: {
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache",
+    },
+  });
 
   if (!response.ok) {
     throw new Error(`Failed to fetch CAPTCHA: ${response.status}`);
@@ -43,4 +51,3 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
 
   return response.json() as Promise<LoginResponse>;
 }
-
