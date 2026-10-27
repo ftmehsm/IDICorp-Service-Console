@@ -1,3 +1,4 @@
+
 import { createBrowserRouter, Navigate } from "react-router";
 import App from "../App";
 import LoginPage from "../pages/LoginPage";
@@ -9,55 +10,59 @@ import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "../auth/PublicRoute";
 import EchoPage from "../pages/EchoPage";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          element: <PublicRoute />,
+          children: [
+            {
+              path: "login",
+              element: <LoginPage />,
+            },
+          ],
+        },
+        {
+          element: <ProtectedRoute />,
+          children: [
+            {
+              element: <SidebarLayout />,
+              children: [
+                {
+                  path: "dashboard",
+                  element: <DashboardPage />,
+                },
+                {
+                  path: "tasks",
+                  element: <TasksPage />,
+                },
+                {
+                  path: "calculator",
+                  element: <CalculatorPage />,
+                },
+                {
+                  path: "echo",
+                  element: <EchoPage />,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          index: true,
+          element: <Navigate to="/dashboard" replace />,
+        },
+        {
+          path: "*",
+          element: <Navigate to="/" replace />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        element: <PublicRoute />,
-        children: [
-          {
-            path: "login",
-            element: <LoginPage />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedRoute />,
-        children: [
-          {
-            element: <SidebarLayout />,
-            children: [
-              {
-                path: "dashboard",
-                element: <DashboardPage />,
-              },
-              {
-                path: "tasks",
-                element: <TasksPage />,
-              },
-              {
-                path: "calculator",
-                element: <CalculatorPage />,
-              },
-              {
-                path: "/echo",
-                element: <EchoPage />,
-              }
-            ],
-          },
-        ],
-      },
-      {
-        index: true,
-        element: <Navigate to="/dashboard" replace />,
-      },
-      {
-        path: "*",
-        element: <Navigate to="/" replace />,
-      },
-      
-    ],
-  },
-]);
+    basename: "/IDICorp-Service-Console",
+  }
+);
