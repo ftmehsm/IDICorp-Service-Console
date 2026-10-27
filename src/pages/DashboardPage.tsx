@@ -12,6 +12,11 @@ const cards = [
     title: "Calculator",
     description: "Run quick calculations without leaving the console.",
   },
+  {
+    to: "/echo",
+    title: "Echo",
+    description: "Send and receive messages from the server.",
+  },
 ];
 
 export default function DashboardPage() {
@@ -21,8 +26,8 @@ export default function DashboardPage() {
         <p className={styles.eyebrow}>Welcome</p>
         <h1 className={styles.title}>Service Console</h1>
         <p className={styles.subtitle}>
-          Choose a tool below to get started, or use the sidebar to move
-          between pages.
+          Choose a tool below to get started, or use the sidebar to move between
+          pages.
         </p>
       </header>
 

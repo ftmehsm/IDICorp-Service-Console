@@ -7,6 +7,7 @@ import CalculatorPage from "../pages/CalculatorPage";
 import SidebarLayout from "../layouts/SidebarLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "../auth/PublicRoute";
+import EchoPage from "../pages/EchoPage";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
                 path: "calculator",
                 element: <CalculatorPage />,
               },
+              {
+                path: "/echo",
+                element: <EchoPage />,
+              }
             ],
           },
         ],
@@ -52,6 +57,7 @@ export const router = createBrowserRouter([
         path: "*",
         element: <Navigate to="/" replace />,
       },
+      
     ],
   },
 ]);

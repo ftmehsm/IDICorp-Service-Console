@@ -6,6 +6,7 @@ const navItems = [
   { to: "/dashboard", label: "Dashboard", end: true },
   { to: "/tasks", label: "Tasks", end: false },
   { to: "/calculator", label: "Calculator", end: false },
+  { to: "/echo", label: "Echo", end: false },
 ];
 
 export default function SidebarLayout() {
@@ -32,7 +33,9 @@ export default function SidebarLayout() {
               to={item.to}
               end={item.end}
               className={({ isActive }) =>
-                isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
+                isActive
+                  ? `${styles.navLink} ${styles.navLinkActive}`
+                  : styles.navLink
               }
             >
               {item.label}
@@ -40,7 +43,11 @@ export default function SidebarLayout() {
           ))}
         </nav>
 
-        <button type="button" className={styles.logoutButton} onClick={handleLogout}>
+        <button
+          type="button"
+          className={styles.logoutButton}
+          onClick={handleLogout}
+        >
           Sign out
         </button>
       </aside>
