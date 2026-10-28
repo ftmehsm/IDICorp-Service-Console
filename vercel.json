@@ -6,10 +6,6 @@
         "destination": "https://ts.idicorp.ir/api/:path*"
       },
       {
-        "source": "/ws/:path*",
-        "destination": "https://ts.idicorp.ir/ws/:path*"
-      },
-      {
         "source": "/(.*)",
         "destination": "/index.html"
       }

@@ -1,3 +1,4 @@
+
 import { API_BASE_URL } from "./config";
 
 export interface CaptchaResponse {
@@ -17,7 +18,6 @@ export interface LoginResponse {
   token_type: string;
 }
 
-
 export async function getCaptcha(): Promise<CaptchaResponse> {
   const response = await fetch(
     `${API_BASE_URL}/api/auth/login`,
@@ -27,9 +27,9 @@ export async function getCaptcha(): Promise<CaptchaResponse> {
       cache: "no-store",
       headers: {
         "Cache-Control": "no-cache",
-        "Pragma": "no-cache",
+        Pragma: "no-cache",
       },
-    },
+    }
   );
 
   if (!response.ok) {
@@ -39,16 +39,20 @@ export async function getCaptcha(): Promise<CaptchaResponse> {
   return response.json() as Promise<CaptchaResponse>;
 }
 
-
-export async function login(payload: LoginPayload): Promise<LoginResponse> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+export async function login(
+  payload: LoginPayload
+): Promise<LoginResponse> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/auth/login`,
+    {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }
+  );
 
   if (!response.ok) {
     throw new Error(`Login failed: ${response.status}`);
@@ -56,4 +60,3 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
 
   return response.json() as Promise<LoginResponse>;
 }
-

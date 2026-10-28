@@ -1,10 +1,6 @@
-
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type {
-  EchoConnectionStatus,
-  EchoMessage,
-} from "./types";
+import type { EchoConnectionStatus, EchoMessage } from "./types";
 
 type UseEchoSocketReturn = {
   status: EchoConnectionStatus;
@@ -50,8 +46,7 @@ export function useEchoSocket(): UseEchoSocketReturn {
   const socketRef = useRef<WebSocket | null>(null);
   const readyRef = useRef(false);
 
-  const [status, setStatus] =
-    useState<EchoConnectionStatus>("connecting");
+  const [status, setStatus] = useState<EchoConnectionStatus>("connecting");
   const [messages, setMessages] = useState<EchoMessage[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -83,7 +78,9 @@ export function useEchoSocket(): UseEchoSocketReturn {
       } catch {
         // Echo responses are plain text, so not every frame is JSON.
         if (!ready) {
-          setError("Received an unexpected message before the connection was ready.");
+          setError(
+            "Received an unexpected message before the connection was ready.",
+          );
           return;
         }
 
@@ -116,8 +113,12 @@ export function useEchoSocket(): UseEchoSocketReturn {
       setError(null);
     };
 
-    const onError = () => {
+    const onError = (event: Event) => {
       if (disposed) return;
+
+      console.error("Echo WebSocket error:", event);
+      console.log("Echo WebSocket URL:", socket?.url);
+      console.log("Echo WebSocket readyState:", socket?.readyState);
 
       hasSocketError = true;
       setStatus("error");
@@ -197,11 +198,7 @@ export function useEchoSocket(): UseEchoSocketReturn {
 
     const socket = socketRef.current;
 
-    if (
-      !socket ||
-      socket.readyState !== WebSocket.OPEN ||
-      !readyRef.current
-    ) {
+    if (!socket || socket.readyState !== WebSocket.OPEN || !readyRef.current) {
       setError("The Echo connection is not ready.");
       return false;
     }
