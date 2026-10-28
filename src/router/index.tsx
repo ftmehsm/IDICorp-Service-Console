@@ -60,8 +60,5 @@ export const router = createBrowserRouter(
         },
       ],
     },
-  ],
-  {
-    basename: "/IDICorp-Service-Console",
-  },
+  ]
 );
